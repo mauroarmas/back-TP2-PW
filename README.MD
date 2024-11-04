@@ -1,5 +1,3 @@
-### Instalar sequelize
-`npm install --save sequelize`
+# Trabajo Práctico 2 - Programación Web 2024 3K6 UTN-FRT
 
-### Instalar driver para mysql
-`npm install --save mysql2`
+Repositorio perteneciente al BACKEND del trabajo práctico 2 
