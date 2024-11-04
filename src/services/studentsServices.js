@@ -3,7 +3,7 @@ const { Op } = require("sequelize");
 
 const findAll = async (search, currentPage, pageSize) => {
   try {
-    // Convertir currentPage y pageSize a números
+    
     const page = Number(currentPage) || 1; // Asignar 1 si no se proporciona
     const size = Number(pageSize) || 10; // Asignar 10 si no se proporciona
 
@@ -43,7 +43,7 @@ const findByLastname = async (lastname) => {
 
 const findById = async (id) => {
   try {
-    const student = await Students.findOne({ where: { id, deleted: 0 } }); // Asegurarse de que el estudiante no esté eliminado
+    const student = await Students.findOne({ where: { id, deleted: 0 } }); 
     return student;
   } catch (error) {
     console.error("studentsServices: " + error);
@@ -79,10 +79,10 @@ const create = async (student) => {
     // Obtener el último sid y sumarle 1
     const lastStudent = await Students.findOne({
       order: [["sid", "DESC"]],
-      // where: { deleted: 0 } // Filtrar registros no eliminados
+      
     });
 
-    const sid = lastStudent ? lastStudent.sid + 1 : 1; // Asigna sid
+    const sid = lastStudent ? lastStudent.sid + 1 : 1; 
     const newStudent = await Students.create({ ...student, sid });
 
     return newStudent;
@@ -94,9 +94,9 @@ const create = async (student) => {
 
 const updateById = async (id, payload) => {
   try {
-    // Asegúrate de que el estudiante exista antes de actualizar
+
     const [updated] = await Students.update(payload, {
-      where: { id, deleted: 0 }, // Asegúrate de que el estudiante no esté eliminado
+      where: { id, deleted: 0 }, 
     });
 
     if (!updated) {
@@ -110,9 +110,9 @@ const updateById = async (id, payload) => {
 const logicDeleteById = async (id, payload) => {
   payload.deleted = 1;
   try {
-    // Asegúrate de que el estudiante exista antes de actualizar
+    
     const [updated] = await Students.update(payload, {
-      where: { id, deleted: 0 }, // Asegúrate de que el estudiante no esté eliminado
+      where: { id, deleted: 0 }, 
     });
 
     if (!updated) {
@@ -129,7 +129,7 @@ const deleteById = async (id) => {
     const [deleted] = await Students.update(
       { deleted: 1 },
       {
-        // Marcar como eliminado en lugar de eliminar físicamente
+        
         where: { id },
       }
     );

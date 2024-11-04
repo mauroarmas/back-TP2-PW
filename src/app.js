@@ -5,7 +5,7 @@ var qs = require('querystring');
 require('./config/setupModel');
 const cors = require('cors');
 
-const studentsRoutes = require('./routes/studentsRoutes'); // Cambiado a estudiantes
+const studentsRoutes = require('./routes/studentsRoutes'); 
 
 var app = express();
 
@@ -18,6 +18,6 @@ app.set('query parse', str => {
     return qs.parse(str);
 });
 
-app.use('/api/students', studentsRoutes); // Cambiado a estudiantes
+app.use('/api/students', studentsRoutes); 
 
 module.exports = app;

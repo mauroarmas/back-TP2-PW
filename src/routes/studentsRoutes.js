@@ -6,20 +6,20 @@ const {
   findById,
   deleteById,
   logicDeleteById,
-} = require("../services/studentsServices"); // Cambiado a studentsServices
+} = require("../services/studentsServices"); 
 const {
   validateById,
   validateBody,
   studentExistent,
-} = require("../middleware/studentsMiddleware"); // Cambiado a studentsMiddleware
+} = require("../middleware/studentsMiddleware"); 
 
 const router = express.Router();
 
 /**obtener todos */
 router.get("/", async (req, res) => {
   try {
-    const { search = "", currentPage = 1, pageSize = 5 } = req.query; // Parámetros para paginación
-    const students = await findAll(search, currentPage, pageSize); // Llama a la función adecuada
+    const { search = "", currentPage = 1, pageSize = 5 } = req.query; 
+    const students = await findAll(search, currentPage, pageSize); 
     res.json(students);
   } catch (error) {
     res.sendStatus(500);
@@ -50,8 +50,8 @@ router.post("/", validateBody, studentExistent, async (req, res) => {
     const newStudent = await create(req.body);
     res.json(newStudent);
   } catch (error) {
-    console.error("Error al crear estudiante:", error.message); // Log para depuración
-    res.status(500).json({ message: error.message }); // Enviar el mensaje de error
+    console.error("Error al crear estudiante:", error.message); 
+    res.status(500).json({ message: error.message }); 
   }
 });
 
